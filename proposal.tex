@@ -1,0 +1,102 @@
+\documentclass[12pt, a4paper]{article}
+
+% Margins taken from a standard found on the internet.
+%\usepackage[tmargin=1.9cm, bmargin=3.67cm, lmargin=1.9cm, rmargin=1.32cm]{geometry}
+% LibreOffice's normal margin.
+%\usepackage[tmargin=0.79in, bmargin=0.79in, lmargin=0.79in, rmargin=0.79in]{geometry}
+% LibreOffice's narrow margin.
+%\usepackage[tmargin=0.5in, bmargin=0.5in, lmargin=0.5in, rmargin=0.5in]{geometry}
+%\usepackage[tmargin=0.6in, bmargin=0.6in, lmargin=0.6in, rmargin=0.6in]{geometry}
+\usepackage[tmargin=0.60in, bmargin=0.60in, lmargin=0.79in, rmargin=0.79in]{geometry}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{brazil} \setotherlanguage{english}
+
+\usepackage{setspace}
+\onehalfspacing%
+
+\usepackage{amsmath}
+\numberwithin{table}{section}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.\quad}
+
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pifont}
+% command to set spacing between lines in a booktabs table.
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\usepackage{float}
+
+% 'hyperref' is better being included last.
+\usepackage{hyperref}
+
+% ==============================================================================
+% IDEIAS PARA ESCREVER A PROPOSTA
+% ==============================================================================
+
+\begin{document}
+% =============================================================================
+% Introdução
+% =============================================================================
+\section{Introdução}
+\label{sec:introducao}
+%- Problemática
+%- Importância
+%- Como eu vou resolver
+%- Desafios
+
+
+% =============================================================================
+% Justificativa
+% =============================================================================
+\section{Justificativa}
+\label{sec:justificativa}
+
+% =============================================================================
+% Objetivos
+% =============================================================================
+\section{Objetivos}
+\label{sec:objetivos}
+
+% =============================================================================
+% Revisão da Literatura
+% =============================================================================
+\section{Revisão da Literatura}
+\label{sec:revisao}
+
+
+% =============================================================================
+% Metodologia
+% =============================================================================
+\section{Metodologia}
+\label{sec:metodologia}
+
+
+% =============================================================================
+% Plano de Trabalho
+% =============================================================================
+\section{Plano de Trabalho}
+\label{sec:plano}
+
+% =============================================================================
+% Cronograma
+% =============================================================================
+\section{Cronograma}
+\label{sec:cronograma}
+\subsection{Disciplinas}
+\subsection{Atividades de Pesquisa}
+
+
+
+% =============================================================================
+% REFERÊNCIAS BIBLIOGRÁFICAS
+% =============================================================================
+%\clearpage
+\renewcommand\refname{Referências Bibliográficas}
+%\bibliographystyle{plain}
+\bibliographystyle{abbrv}
+\bibliography{refs}
+
+\end{document}
