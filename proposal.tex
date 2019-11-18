@@ -12,6 +12,10 @@
 \usepackage{polyglossia}
 \setdefaultlanguage{brazil} \setotherlanguage{english}
 
+%% Tem que instalar essa fonte
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Times New Roman}
+
 \usepackage{setspace}
 \onehalfspacing%
 
@@ -47,6 +51,64 @@
 %- Como eu vou resolver
 %- Desafios
 
+%% Porque fazer analise de sequencia de DNA, falar de descobrir novas
+%% doencas e relacoes entre especies [Edans tese]
+%% Explicar o conceito do algoritomo match missmatch gap
+%% falar dos problemas uso de memoria O(mn) tempo de execução
+%% Falar de algoritimos classicos SW (exato), FASTA BLAST (heuristico)
+%% Limitacoes do SW
+%% Otimizacoes do SW com openCL [Rucci]
+%% Citar blockpruning [MASA]
+%% propor blockpruning na fpga
+
+
+O avanço do conhecimento na área da Biologia em especial na Genética permitiu que
+os genomas de diversos organismos fosses sequenciados e armazenados em diversas 
+bases de dados públicas~\cite{6545119}. O processamento desse enorme número de 
+dados pode ser interessante, pois pesquisadores podem: tirar conclusões sobre 
+genes que causam doenças, comparar espécies do ponto de vista evolutivo, comparar 
+o metabolismo entre diferentes especies, analisar mutações no genoma, entre 
+outros. Grande parte dos avanços se devem a Bioinformática. Nessa área se 
+propõem novos algoritmos e o desenvolvimento de novas ferramentas para a analise
+desses dados, gerando informações relevantes do ponto de vista 
+biológico~\cite{Luscombe2001WhatIB}.
+
+A comparação de duas ou mais sequencias biológicas e uma subárea fundamental
+da Bioinformática, esse tipo de processamento permite a busca de padrões 
+entre sequências de aminoácidos e nucleotídeos, quanto na busca de relações
+filogenética entre organismos~\cite{Gollery2005BioinformaticsSA}. O algoritmo
+Smith-Waternman (SW)~\cite{SMITH1981195} é um algoritmo clássico desta área 
+de pesquisa, esse método é frequentemente utilizado como base para 
+pesquisas na áreas, sendo um padrão comparativo para diferentes técnicas de 
+alinhamento. Para  calcular pontuações ótimas as pontuações ótimas 
+de alinhamento local, o algoritmo SW tem complexidade linear no espaço e 
+complexidade quadrática no tempo.
+
+Pesquisas nas bases de dados de genomas requerem o calculo de alinhamento ótimo 
+diversas vezes. Pela a alta complexidade dos algoritmos exatos, o tempo de 
+computação pode ser impraticável. Por essa rasão surgiram algoritmos heurísticos, 
+o FASTA~\cite{PMID:3162770} e o BLAST~\cite{ALTSCHUL1990403} são exemplos destes, 
+para acelerar o processamento da comparação de duas sequencias, a custo de não 
+garantir o resultado ótimo. 
+
+Com o avanço tecnológico surgiram tecnologias capazes de viabilizar o processamento
+dos algoritmos exatos. Utilizando-se de técnicas de programação paralela, e 
+arquiteturas como por exemplo FPGAs (\textit{Field Programmable Gate Arrays}) e GPUs 
+(\textit{Graphics Processing Units}), obtiveram-se bons resultados no alinhamento
+de genomas, garantindo o resultado ótimo. 
+
+A partir de 1985, diversas pesquisas sugeriram a implementação do SW em FPGAs,
+principalmente com foco no alinhamento de DNA. 
+Em 2015 RUCCI, Enzo et al.~\cite{7345650} propuseram uma variação do algoritmo
+Smith-Waterman utilizando OpenCL~\cite{Stone:2010:OPP:2220077.2220227} em FPGA,
+neste estudo obtiveram resultados expressivos tanto em termos de desempenho, 
+tanto em termos de eficiência energética. 
+
+Em 2016 SANDES, Edans et al.~\cite{DeO.Sandes:2016:MMA:2888415.2858656} sob
+orientação da prof. Alba de Melo propôs uma arquitetura multiplataforma para
+alinhamento de sequencias (MASA) utilizando \textit{Block Pruning} (BP) 
+---//TODO explicar o BP--- 
+devido ao seus resultados este trabalho se encontra no estado da arte.
 
 % =============================================================================
 % Justificativa
@@ -54,17 +116,31 @@
 \section{Justificativa}
 \label{sec:justificativa}
 
+A implementação de um algoritmo clássico o SW em FPGA utilizando OpenCL para o 
+alinhamento de sequencias, assim como a proposta de um novo método para este
+tipo de processamento, como no caso do MASA, obtiveram o alto desempenho. 
+A implementação do MASA utilizando BP em FPGA pode-se obter um ganho tanto 
+de desempenho a vista do tempo de execução como uma maior eficiência energética
+neste processamento, permitindo assim novos avanços nos estudos dos genomas.
+
+
 % =============================================================================
 % Objetivos
 % =============================================================================
 \section{Objetivos}
 \label{sec:objetivos}
+%% implementar um modulo do MASA em fpga
+%% Ganho em eficiência energética
+%% Ganho de desempenho
 
 % =============================================================================
 % Revisão da Literatura
 % =============================================================================
 \section{Revisão da Literatura}
 \label{sec:revisao}
+
+%% MASA
+%% BP
 
 
 % =============================================================================
