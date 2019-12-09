@@ -62,48 +62,47 @@
 %% propor blockpruning na fpga
 
 
-O avanço do conhecimento na área da Biologia em especial na Genética permitiu que
+O avanço do conhecimento na área da Biologia, e em especial no campo da Genética, permitiu que
 os genomas de diversos organismos fossem sequenciados e armazenados em diversas 
 bases de dados públicas. O processamento desse enorme volume de 
-dados é muito interessante, pois pesquisadores podem: tirar conclusões sobre 
+dados é de grande interesse, uma vez que pesquisadores podem: tirar conclusões sobre 
 genes que causam doenças, comparar espécies do ponto de vista evolutivo, comparar 
 o metabolismo entre diferentes especies, analisar mutações no genoma, entre 
-outros. Grande parte dos avanços recentes se devem a Bioinformática. Nessa área se 
-propõem novos algoritmos e o desenvolvimento de novas ferramentas para a analise
+outras aplicações. Grande parte dos avanços recentes se devem a Bioinformática. Nessa área se 
+propõem novos algoritmos e o desenvolvimento de novas ferramentas para a análise
 desses dados, gerando informações relevantes do ponto de vista 
 biológico~\cite{Luscombe2001WhatIB}.
 
-A comparação de duas ou mais sequencias biológicas é uma subárea fundamental
+A comparação entre duas ou mais sequências biológicas é uma subárea fundamental
 da Bioinformática. Esse tipo de processamento permite a busca de padrões 
 entre sequências de aminoácidos e nucleotídeos. O algoritmo
 Smith-Waternman (SW)~\cite{SMITH1981195} é um algoritmo clássico desta área 
 de pesquisa, sendo frequentemente utilizado como base para 
 pesquisas na área. Para  calcular o alinhamento local ótimo,
-o algoritmo SW tem complexidade complexidade quadrática no tempo e espaço.
+o algoritmo SW possui complexidade quadrática tanto no tempo quanto no espaço.
 
-Pesquisas nas bases de dados de genomas requerem o calculo de alinhamento ótimo 
+Pesquisas nas bases de dados de genomas requerem o cálculo de alinhamento ótimo 
 diversas vezes. Pela alta complexidade dos algoritmos exatos, o tempo de 
-computação pode ser impraticável. Por essa razão surgiram algoritmos heurísticos, 
-o FASTA~\cite{PMID:3162770} e o BLAST~\cite{ALTSCHUL1990403} são exemplos destes, 
-para acelerar o processamento da comparação de duas sequencias, a custo de não 
+computação pode ser impraticável. Por essa razão surgiram algoritmos heurísticos. 
+O FASTA~\cite{PMID:3162770} e o BLAST~\cite{ALTSCHUL1990403} são exemplos destes algoritmos utilizados para acelerar o processamento da comparação de duas sequências, em detrimento de não 
 garantir o resultado ótimo. 
 
 Com o avanço tecnológico surgiram tecnologias capazes de viabilizar o processamento
 dos algoritmos exatos. Utilizando-se de técnicas de programação paralela, e 
-arquiteturas como por exemplo FPGAs (\textit{Field Programmable Gate Arrays}) e GPUs 
+arquiteturas como FPGAs (\textit{Field Programmable Gate Arrays}) e GPUs 
 (\textit{Graphics Processing Units}), obtiveram-se bons tempos de execução no alinhamento
 de genomas, garantindo o resultado ótimo. 
 
 A partir de 1985, diversas pesquisas sugeriram a implementação do SW em FPGAs,
 principalmente com foco no alinhamento de DNA. 
-Em 2015 Rucci et al.~\cite{7345650} propuseram uma variação do algoritmo
+Em 2015, Rucci et al.~\cite{7345650} propuseram uma variação do algoritmo
 Smith-Waterman utilizando OpenCL em FPGA.
-Neste estudo obtiveram resultados expressivos tanto em termos de desempenho, 
-tanto em termos de eficiência energética. 
+Neste estudo foram obtidos resultados expressivos tanto em termos de desempenho, 
+quanto em termos de eficiência energética. 
 
-Em 2016 Sandes et al.~\cite{DeO.Sandes:2016:MMA:2888415.2858656} propuseram
+Em 2016, Sandes et al.~\cite{DeO.Sandes:2016:MMA:2888415.2858656} propuseram
 uma arquitetura multiplataforma para
-alinhamento de sequencias (MASA) utilizando \textit{Block Pruning} (BP),
+alinhamento de sequências (MASA) utilizando \textit{Block Pruning} (BP),
 assim reduzindo consideravelmente o montante de dados a serem processados. 
 Devido ao seus tempos de execução alcançados este trabalho possui muito bom
 desempenho, tanto para GPU como para CPU.
@@ -116,13 +115,13 @@ desempenho, tanto para GPU como para CPU.
 
 A arquitetura MASA~\cite{DeO.Sandes:2016:MMA:2888415.2858656}, permite a 
 implementação do algoritmo SW para diferentes plataformas (CPU, GPU e acelerador 
-Intel Xeon Phi). No entanto, não existe um implementação MASA para FPGA.
+Intel Xeon Phi). No entanto, não há uma implementação MASA para FPGA.
 A implementação de um algoritmo clássico o SW em FPGA utilizando OpenCL para o 
-alinhamento de sequencias, assim como a proposta de um novo método para este
+alinhamento de sequências, assim como a proposta de um novo método para este
 tipo de processamento, como no caso do MASA, obtiveram o alto desempenho. 
-A implementação do MASA utilizando BP em FPGA pode-se obter um ganho tanto 
-de desempenho a vista do tempo de execução como uma maior eficiência energética
-neste processamento, permitindo assim novos avanços nos estudos dos genomas.
+Com a implementação do MASA utilizando BP em FPGA é possível obterem-se ganhos tanto 
+de desempenho, mediante o tempo de execução, quanto uma maior eficiência energética
+neste processamento, permitindo assim novos avanços nos estudos referentes aos genomas.
 
 
 % =============================================================================
@@ -135,9 +134,8 @@ neste processamento, permitindo assim novos avanços nos estudos dos genomas.
 %% Ganho de desempenho
 
 O objetivo principal deste trabalho é desenvolver uma extensão específica do 
-MASA para a busca do alinhamento ótimo local entre sequencias de DNA, executando
-em FPGA. Com o foco em obter uma melhora no desempenho do tempo de 
-execução, com uma melhor eficiência energética. 
+MASA para a busca do alinhamento ótimo local entre sequências de DNA por meio de execução em FPGA, visando obter melhora no desempenho do tempo de 
+execução e maior eficiência energética. 
 
 % =============================================================================
 % Revisão da Literatura
@@ -148,57 +146,55 @@ execução, com uma melhor eficiência energética.
 \subsection{Smith-Waterman}
 
 Uma demanda muito comum da Bioinformática é a busca pelo alinhamento ótimo entre
-duas sequencias, o algoritmo \textit{Needleman-Wunsch (NW)}~\cite{PMID:5420325}
+duas sequências, o algoritmo \textit{Needleman-Wunsch (NW)}~\cite{PMID:5420325}
 obtém o alinhamento global 
 ótimo duas sequências, permitindo que \textit{gaps} sejam inseridos para melhorar 
 o alinhamento. Sendo que os alinhamentos globais incluem necessariamente 
 todos os caracteres das sequências.
-Uma situação mais comum é a busca do alinhamento local ótimo, onde se busca regiões
+Uma situação mais comum é a busca do alinhamento local ótimo, onde se buscam regiões
 de alta similaridade entre as sequências. O \textit{Smith-Waterman (SW)}.
 Proposto por Smith-Waterman em~\cite{SMITH1981195} esse algoritmo é baseado no NW,
 porém adaptado para tratar o problema do alinhamento local.
 O SW é executado em duas etapas. Primeiro, se utiliza de técnicas de programação 
 dinâmica para calcular uma matriz, atribuindo diferentes valores para 
 casos de \textit{match, mismatch} e \textit{gap}.
-Após essa matriz ser preenchida, se realiza uma técnica chamada de \textit{traceback} 
-onde encontra o alinhamento local ótimo.
+Após o preenchimento dessa matriz, realiza-se uma técnica denominada de \textit{traceback} 
+onde encontra-se o alinhamento local ótimo.
 
 \subsection {\textit{Smith-Waterman} com OpenCL em FPGA}
 
 A grande limitação do SW é o custo computacional do algoritmo, tanto no tempo
-quanto no espaço o SW tem complexidade quadrática o que o torna impraticável em
-diversos cenários. Então surgiram diversas pesquisas para mitigar este problema
-utilizando arquiteturas paralelas em CPU, GPU e FPGA. 
-Rucci et al.~\cite{7345650} a eficiência de execução utilizando paralelismo a 
+quanto no espaço. O SW possui complexidade quadrática, tornando-o impraticável em
+diversos cenários. Diante disso, surgiram diversas pesquisas visando mitigar este problema
+pela utilização de arquiteturas paralelas em CPU, GPU e FPGA. 
+Rucci et al.~\cite{7345650} investigou a eficiência de execução utilizando paralelismo a 
 nível de \textit{thread} em uma FPGA Altera Stratix V. Para isso utilizaram da 
 OpenCL, um \textit{framework} para implementação de programação paralela em
 plataformas heterogêneas, suportando diversos \textit{hardwares}, como CPUs,
 GPUs, FPGAs e outros. A OpenCL é baseada em um modelo \textit{host-device}, 
-onde o \textit{host} é responsável pela gerencia de memória, transferência de dados e 
+onde o \textit{host} é responsável pela gerência de memória, transferência de dados e 
 instanciação da execução nos \textit{devices}.
-Rucci se utilizou dessa arquitetura para implementar o SW em 3 etapas, um pré-processamento
-onde se adapta a sequencia de dados para a execução em FPGA, depois o estágio SW, onde é feito
-o alinhamento das sequencias e por fim o estágio de ordenação que é feito o alinhamento 
-das pontuações e ordenadas de forma decrescente. Sendo que o primeiro e terceiro estágios,
-foram executados no \textit{host} e o segundo estagio na FPGA.
-Com este trabalho Rucci chegou a conclusão que o paralelismo no nível de dados é 
-crucial para obter boas taxas de desempenho ao custo de um aumento moderado no uso
-de recursos. Além disso obteve um aumento no desempenho significativo em comparação
+Rucci e colaboradores se utilizaram dessa arquitetura para implementar o SW em 3 etapas, iniciando com um pré-processamento
+onde se adapta a sequência de dados para a execução em FPGA, seguido do estágio SW, onde é feito
+o alinhamento das sequências, e por fim o estágio de ordenação, em que realiza-se o alinhamento das pontuações e ordenadas de forma decrescente. O primeiro e terceiro estágios foram executados no \textit{host}, ao passo que executou-se o segundo estágio na FPGA.
+Com este trabalho, Rucci e colaboradores chegaram à conclusão que o paralelismo no nível de dados é 
+crucial para obterem-se boas taxas de desempenho em detrimento de um aumento moderado no uso
+de recursos. Além disso, obteve-se um aumento no desempenho significativo em comparação
 com implementações anteriores e um baixo custo energético.
 
 \subsection {\textit{MASA: A Multiplatform Architecture for Sequence Aligners}}
 
 O \textit{framework} MASA~\cite{DeO.Sandes:2016:MMA:2888415.2858656} 
-dispõe uma infraestrutura flexível para o alinhamento de 
+dispõe de uma infraestrutura flexível para o alinhamento de 
 sequências em múltiplas plataformas. O MASA disponibiliza um 
 código (desenvolvido em C/C++) que pode ser agregado a um desenvolvimento 
 baseado em uma solução de processamento paralelo, permitindo a implementação
-de soluções específicas. Para tanto o MASA é dividido em módulos de acordo 
+de soluções específicas. Para tanto, o MASA é dividido em módulos de acordo 
 com as funcionalidades existentes, algumas independentes de plataforma, como
-o gerenciamento de dados e estágios, e funcionalidades dependente de plataforma, 
-como processamento da matriz de programação dinâmica. Desta forma o MASA promove 
+o gerenciamento de dados e estágios, e funcionalidades dependentes de plataforma, 
+como processamento da matriz de programação dinâmica. Desta forma, o MASA promove 
 robustez e facilita o desenvolvimento de soluções em diferentes plataformas 
-para o problema do alinhamento de sequencias, atualmente o MASA conta com 
+para o problema do alinhamento de sequências. Atualmente, o MASA conta com 
 implementações para CPU, GPU e acelerador Intel Xeon Phi.
 
 
@@ -210,9 +206,9 @@ implementações para CPU, GPU e acelerador Intel Xeon Phi.
 
 Para o desenvolvimento deste trabalho será utilizado o método experimental, 
 com a implementação de uma extensão do MASA para uma execução eficiente 
-da busca do alinhamento ótimo local entre duas sequencias. 
-Comparando-o com implementações já existentes
-além de implementações no MASA para outras plataformas (CPU, GPU e Intel Xeon Phi).
+da busca do alinhamento ótimo local entre duas sequências. 
+Será feita a comparação com implementações já existentes,
+assim como será feita a implementação no MASA para outras plataformas (CPU, GPU e Intel Xeon Phi).
 
 % =============================================================================
 % Plano de Trabalho
@@ -220,7 +216,7 @@ além de implementações no MASA para outras plataformas (CPU, GPU e Intel Xeon
 \section{Plano de Trabalho}
 \label{sec:plano}
 
-Vinculado à proposta apresentada na Seção~\ref{sec:metodologia} este trabalho 
+Vinculado à proposta apresentada na Seção~\ref{sec:metodologia}, este trabalho 
 será concluído nas seguintes etapas:
 
 \begin{enumerate}
@@ -252,11 +248,11 @@ Programa de Pós-graduação em Informática da Universidade de Brasília.
 \label{sec:cronograma}
 
 Pretende-se utilizar o primeiro semestre para uma Revisão Sistemática da Literatura,
-o término do terceiro semestre para finalizar o desenvolvimento, e iniciar baterias 
-de testes e fazer otimizações e a Defesa da Dissertação no ultimo semestre obedecendo o 
+o término do terceiro semestre para finalizar o desenvolvimento, e dar início às baterias 
+de testes e fazer otimizações, finalmente realizar a Defesa da Dissertação no último semestre, obedecendo o 
 tempo previsto.
 
-A Tabela~\ref{tab:cronograma} apresenta o cronograma de atividades prevista para o curso.
+A Tabela~\ref{tab:cronograma} apresenta o cronograma de atividades previstas para o curso.
 
 \begin{table}[H]
 \label{tab:cronograma}
